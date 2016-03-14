@@ -213,55 +213,135 @@ if(($_POST["doAdmin"]=='updateEndpointNow')){
 <!-- uspbarra - fim -->                 
      
 <div class="container">
-  <div class="header">
-      <h1><a href="index.php" title="<?php echo $_SESSION[CFGTitulo].': '.MENU_ListaSis;?> "><?php echo $_SESSION[CFGTitulo];?></a></h1>
- </div>
-</div>
-<nav class="navbar navbar-inverse" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" title="<?php echo MENU_Inicio.' '.$_SESSION[CFGTitulo];?>" href="index.php"><?php echo MENU_Inicio;?></a>
-    </div>
-    <div class="navbar-collapse collapse" id="navbar-collapsible">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a title="<?php echo LABEL_busqueda;?>" href="index.php?xsearch=1"><?php echo ucfirst(LABEL_BusquedaAvanzada);?></a></li>
-
-        <li><a title="<?php echo MENU_Sobre;?>" href="sobre.php"><?php echo MENU_Sobre;?></a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-left">
-        <?php
-        //hay sesion de usuario
-        if($_SESSION[$_SESSION["CFGURL"]][ssuser_nivel]){
-          echo HTMLmainMenu();
-        }else{//no hay session de usuario
-        ?>
-           <li><a href="login.php" title="<?php echo MENU_MiCuenta;?>"><?php echo MENU_MiCuenta;?></a></li>
-        <?php
-        };
-        ?>
-      </ul>
-      <form method="get" id="simple-search" name="simple-search" action="index.php" class="navbar-form">
-        <div class="form-group" style="display:inline;">
-          <div class="fill col2">
-            <input class="form-control" id="query" name="<?php echo FORM_LABEL_buscar;?>"  type="text">
-            <input class="btn btn-default" type="submit" value="<?php echo LABEL_Buscar ?>" />
-          </div>
+    <!-- Header SIBiUSP -->   
+    	<div class="row">
+            <div class="col-md-8">
+                    <div class="logo">
+                            <h1><a href="index.php" title="<?php echo $_SESSION[CFGTitulo].': '.MENU_ListaSis;?> "><?php echo $_SESSION[CFGTitulo];?></a></h1>
+                    </div>
+            </div>
+            <div class="col-md-4">
+                    <address>
+                    <strong>Departamento Técnico do Sistema Integrado de Bibliotecas da USP</strong><br>
+                            Rua da Biblioteca, S/N - Complexo Brasiliana<br>
+                            05508-050 - Cidade Universitária, São Paulo, SP - Brasil<br>
+                            <abbr title="Phone">Tel:</abbr> (0xx11) 3091-4439<br>
+                            <strong>E-mail:</strong> <a href="mailto:#">atendimento@sibi.usp.br</a>
+                    </address>
+            </div>
         </div>
-      </form>
+    <!-- Fim header -->
+<!-- Barra de navegação USP - Inicio -->
 
-    </div>
+	<div id="arriba"></div>
+			<header class="navbar navbar-inverse" role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+					<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation" >
+						<ul class="nav navbar-nav" >
+							<li class="active"><a title="<?php echo MENU_Inicio;?>" href="index.php"><span class="glyphicon glyphicon-home"></span> <?php echo MENU_Inicio;?></a></li>
+							<?php
+								//hay sesion de usuario
+								if($_SESSION[$_SESSION["CFGURL"]][ssuser_nivel]){
+								echo HTMLmainMenu();
+				//no hay session de usuario
+				}else{
+				?>
+					 <li>
+                                            <!-- Button trigger modal -->
+                                            <a type="button" data-toggle="modal" data-target="#login"><?php echo MENU_MiCuenta;?></a>
+					    <!-- Modal -->
+                                            <div class="modal" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    	          <?php
+                                                                if($_SESSION[$_SESSION["CFGURL"]]["ssuser_id"]){
+                                                                require_once(T3_ABSPATH . 'common/include/inc.misTerminos.php');
+                                                                }else{
+                                                            ?>
+                                                         <div id="bodyText">
+                                                        <?php
+                                                            if($_POST["task"]=='user_recovery')
+                                                            {
+                                                                    $task_result=recovery($_POST["id_correo_electronico_recovery"]);		
+                                                            }
 
-  </div>
-</nav>
+
+                                                            if ($_GET["task"]=='recovery') 
+                                                            {
+                                                                    echo HTMLformRecoveryPassword();	
+                                                            }
+                                                            else 
+                                                            {
+
+                                                                    if(($_POST["task"]=='login') && (!$_SESSION[$_SESSION["CFGURL"]]["ssuser_id"])) 
+                                                                    {
+                                                                            $task_result=array("msg"=>t3_messages('no_user'));			
+                                                                    }					
+                                                                    echo HTMLformLogin($task_result);		
+                                                            };
+
+                                                            ?>
+
+                                                    <?php
+                                                                }
+                                                               ?>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>                                                    
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div> 
+				<?php
+				};
+				?>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+                                                    <li><a title="<?php echo LABEL_busqueda;?>" href="index.php?xsearch=1"><?php echo ucfirst(LABEL_BusquedaAvanzada);?></a></li>
+                                                    <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Idioma <span class="caret"></span></a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                          <li><a href="/pt-br">Português</a></li>
+                                                          <li><a href="/en">English</a></li>
+                                                          <!-- <li><a href="?setLang=es">Español</a></li> -->
+                                                        </ul>
+                                                    </li>
+                                                    <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Equipe <span class="caret"></span></a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="equipe.php">Equipe de implementação</a></li>
+                                                            <li><a href="equipe_atual.php">Grupos de gestão atuais</a></li>
+							    <li><a title="<?php echo MENU_Catalogacao;?>" href="catalogacao.php"><?php echo MENU_Catalogacao;?></a></li> 
+                                                        </ul>
+                                                    </li>
+						                                                     
+                                                    <li><a title="<?php echo MENU_Sobre;?>" href="sobre.php"><?php echo MENU_Sobre;?></a></li>                                                 
+						</ul>
+						<!-- Search Box -->
+							<form method="get" id="simple-search" name="simple-search" action="index.php" class="navbar-form navbar-right" onsubmit="return checkrequired(this)">
+							<div class="form-group">
+								<input type="text" id="query" class="form-control" name="<?php echo FORM_LABEL_buscar;?>" size="25" value=""/>
+							</div>
+							<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+							</form>
+					</nav>
+			</header>
+
+<!-- Barra de navegação USP - Fim -->
 
 
-<div class="container">
+
 
 <?php
 if($_SESSION[$_SESSION["CFGURL"]]["ssuser_id"]){

@@ -20,7 +20,7 @@ if($_GET[letra])
 
 if((strlen($letra)>0) && (strlen($letra)<5))
 {
-	echo '<div class="container" id="bodyText">';
+	echo '<div id="bodyText">';
 	echo '<div class="row">';
 
 	echo HTMLlistaAlfabeticaUnica($letra);
@@ -47,21 +47,21 @@ elseif(
 //Vista de términos según estados
 elseif(is_numeric($_GET[estado_id]))
 {
-	echo '<div class="container" id="bodyText">';
+	echo '<div id="bodyText">';
 	echo HTMLlistaTerminosEstado($_GET[estado_id],CFG_NUM_SHOW_TERMSxSTATUS);
 	echo '</div>';
 }
 //Vista de términos según estados
 elseif($_GET["s"]=='n')
 {
-	echo '<div class="container" id="bodyText">';
+	echo '<div id="bodyText">';
 	echo HTMLlistaTerminosFecha();
 	echo '</div>';
 }
 //Vista de busqueda avanzada
 elseif(($_GET[xsearch]=='1'))
 {
-	echo '<div class="container" id="bodyText">';
+	echo '<div id="bodyText">';
 	echo HTMLformAdvancedSearch($_GET);
 	echo '</div>';
 }
@@ -82,7 +82,7 @@ elseif(($_GET[mod]=='csv') && ($_SESSION[$_SESSION["CFGURL"]][ssuser_id]))
 //Esta login y mostrar terminios libres o repetidos
 elseif(($_SESSION[$_SESSION["CFGURL"]][ssuser_id])&&($_GET[verT]))
 {
-	echo '<div class="container" id="bodyText">';
+	echo '<div id="bodyText">';
 	switch($_GET[verT]){
 		case 'L':
 		echo HTMLformVerTerminosLibres($_POST["taskterm"],$_POST["deleteFreeTerms_id"]);
@@ -108,7 +108,7 @@ elseif($_SESSION[$_SESSION["CFGURL"]]["_SHOW_TREE"]=='1')
 elseif($_SESSION[$_SESSION["CFGURL"]]["_SHOW_TREE"]=='0')
 {
 
-	echo '<div class="container" id="bodyText">';
+	echo '<div id="bodyText">';
 
 	echo HTMLlistaAlfabeticaUnica($letra);
 
