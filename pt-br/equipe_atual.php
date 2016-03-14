@@ -3,46 +3,73 @@
 #                                                                        #
 #   Copyright (C) 2004-2008 Diego Ferreyra tematres@r020.com.ar
 #   Distribuido bajo Licencia GNU Public License, versión 2 (de junio de 1.991) Free Software Foundation
-#
+#  
 ###############################################################################################################
 #
 include("config.tematres.php");
 $metadata=do_meta_tag();
- /*term reporter*/
-if(($_GET[mod]=='csv') && (substr($_GET[task],0,3)=='csv') && ($_SESSION[$_SESSION["CFGURL"]][ssuser_id]))
+ /*
+term reporter
+*/
+if(($_GET[mod]=='csv') && (substr($_GET[task],0,3)=='csv') && ($_SESSION[$_SESSION["CFGURL"]][ssuser_id]))  
 {
 	return wichReport($_GET[task]);
 }
+
 $search_string ='';
 $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,FORM_LABEL_buscar)) : '';
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo LANG;?>">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link href="<?php echo T3_WEBPATH;?>bootstrap/css/bootstrap.min.css" rel="stylesheet">
-   <link href="<?php echo T3_WEBPATH;?>bootstrap/submenu/css/bootstrap-submenu.min.css" rel="stylesheet">
-	<link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet" />
-	 <link href="<?php echo T3_WEBPATH;?>css/t3style.css" rel="stylesheet">
 
+<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	<?php echo $metadata["metadata"]; ?>
+	<link type="image/x-icon" href="http://www.producao.usp.br/themes/BDPI/images/faviconUSP.ico" rel="icon" />
+	<link type="image/x-icon" href="http://www.producao.usp.br/themes/BDPI/images/faviconUSP.ico" rel="shortcut icon" />
+	<link rel="stylesheet" href="<?php echo T3_WEBPATH;?>css/style.css" type="text/css" media="screen" />
+	<!-- <link rel="stylesheet" href="<?php echo T3_WEBPATH;?>css/print.css" type="text/css" media="print" /> -->
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  <?php echo $metadata["metadata"]; ?>
-  <link type="image/x-icon" href="<?php echo T3_WEBPATH;?>images/faviconUSP.ico" rel="icon" />
-  <link type="image/x-icon" href="<?php echo T3_WEBPATH;?>images/faviconUSP.ico" rel="shortcut icon" />
+	<script type="text/javascript" src="<?php echo T3_WEBPATH;?>jq/lib/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo T3_WEBPATH;?>jq/jquery.autocomplete.js"></script>   
+	<script type="text/javascript" src="<?php echo T3_WEBPATH;?>jq/jquery.mockjax.js"></script>
+	<script type="text/javascript" src="<?php echo T3_WEBPATH;?>jq/tree.jquery.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="<?php echo T3_WEBPATH;?>css/jquery.autocomplete.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo T3_WEBPATH;?>css/jqtree.css" />
+        
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="<?php echo T3_WEBPATH;?>bootstrap/css/vcusp-theme.css">
 
-<!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo T3_WEBPATH;?>bootstrap/css/vcusp-theme.css">
+	<!-- Bootstrap JS -->
+	<script type='text/javascript' src='<?php echo T3_WEBPATH;?>jq/bdpi.min.js'></script>
+	
+	<?php
+	if ($_SESSION[$_SESSION["CFGURL"]][ssuser_nivel]>0) 
+	{
+	?>
+
+	<!-- Load TinyMCE -->
+	<script type="text/javascript" src="<?php echo T3_WEBPATH;?>tiny_mce/jquery.tinymce.js"></script>
+	<!-- /TinyMCE -->
+
+	<script type="text/javascript" src="<?php echo T3_WEBPATH;?>jq/fg.menu.js"></script>   
+	<link type="text/css" href="<?php echo T3_WEBPATH;?>jq/fg.menu.css" media="screen" rel="stylesheet" />
+	<link type="text/css" href="<?php echo T3_WEBPATH;?>jq/theme/ui.all.css" media="screen" rel="stylesheet" />				
+	<script type="text/javascript" src="<?php echo T3_WEBPATH;?>jq/jquery.jeditable.mini.js" charset="utf-8"></script>
+	
+
+<?php
+}
+?>
+	<script type="application/javascript" src="js.php" charset="utf-8"></script>
+	<script type="text/javascript" src="<?php echo T3_WEBPATH;?>forms/jquery.validate.min.js"></script>
+	<?php
+	 if($_SESSION[$_SESSION["CFGURL"]]["lang"][2]!=='en')
+			echo '<script src="'.T3_WEBPATH.'forms/localization/messages_'.$_SESSION[$_SESSION["CFGURL"]]["lang"][2].'.js" type="text/javascript"></script>';
+	?>
 </head>
- <body>
-
+<body>
 <!--uspbarra - ínicio -->
 	<div id="uspbarra" style="background-color:transparent;border-style:none">
 		<div class="uspLogo"  style="background-color:transparent;border-style:none">
@@ -158,32 +185,27 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
                                                     </div> </div>              
 				</div>
 	</div>
-<!-- uspbarra - fim -->       
-     
-     
-     
-<div class="container">
-    
-    <!-- Header SIBiUSP -->   
-    	<div class="row">
-            <div class="col-md-8">
-                    <div class="logo">
-                            <h1><a href="index.php" title="<?php echo $_SESSION[CFGTitulo].': '.MENU_ListaSis;?> "><?php echo $_SESSION[CFGTitulo];?></a></h1>
-                    </div>
-            </div>
-            <div class="col-md-4">
-                    <address>
-                    <strong>Departamento Técnico do Sistema Integrado de Bibliotecas da USP</strong><br>
-                            Rua da Biblioteca, S/N - Complexo Brasiliana<br>
-                            05508-050 - Cidade Universitária, São Paulo, SP - Brasil<br>
-                            <abbr title="Phone">Tel:</abbr> (0xx11) 3091-4439<br>
-                            <strong>E-mail:</strong> <a href="mailto:#">atendimento@sibi.usp.br</a>
-                    </address>
-            </div>
-        </div>
-    <!-- Fim header --> 
-<!-- Barra de navegação USP - Inicio -->
+<!-- uspbarra - fim -->  
 
+<div class="container">
+	<div class="row">
+	<div class="col-md-8">
+		<div class="logo">
+			<h1><a href="index.php" title="<?php echo $_SESSION[CFGTitulo].': '.MENU_ListaSis;?> "><?php echo $_SESSION[CFGTitulo];?></a></h1>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<address>
+		<strong>Departamento Técnico do Sistema Integrado de Bibliotecas da USP</strong><br>
+			Rua da Biblioteca, S/N - Complexo Brasiliana<br>
+			05508-050 - Cidade Universitária, São Paulo, SP - Brasil<br>
+			<abbr title="Phone">Tel:</abbr> (0xx11) 3091-4439<br>
+			<strong>E-mail:</strong> <a href="mailto:#">atendimento@sibi.usp.br</a>
+		</address>
+	</div>
+</div>
+	
+	<div id="arriba"></div>
 			<header class="navbar navbar-inverse" role="navigation">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -205,7 +227,7 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
 					 <li>
                                             <!-- Button trigger modal -->
                                             <a type="button" data-toggle="modal" data-target="#login"><?php echo MENU_MiCuenta;?></a>
-					    <!-- Modal -->
+                                            <!-- Modal -->
                                             <div class="modal" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                               <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -225,7 +247,6 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
                                                             {
                                                                     $task_result=recovery($_POST["id_correo_electronico_recovery"]);		
                                                             }
-
 
 
                                                             if ($_GET["task"]=='recovery') 
@@ -263,20 +284,18 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
                                                     <li class="dropdown">
                                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Idioma <span class="caret"></span></a>
                                                         <ul class="dropdown-menu" role="menu">
-                                                          <li><a href="/pt-br">Português</a></li>
-                                                          <li><a href="/en">English</a></li>
-                                                          <!-- <li><a href="?setLang=es">Español</a></li> -->
+                                                          <li><a href="?setLang=pt">Português</a></li>
+                                                          <li><a href="?setLang=en">English</a></li>
+                                                          <li><a href="?setLang=es">Español</a></li>
                                                         </ul>
                                                     </li>
                                                     <li class="dropdown">
                                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Equipe <span class="caret"></span></a>
                                                         <ul class="dropdown-menu" role="menu">
                                                             <li><a href="equipe.php">Equipe de implementação</a></li>
-                                                            <li><a href="equipe_atual.php">Grupos de gestão atuais</a></li>
-							    <li><a title="<?php echo MENU_Catalogacao;?>" href="catalogacao.php"><?php echo MENU_Catalogacao;?></a></li> 
+                                                          <li><a href="?setLang=en">Equipes atuais</a></li>
                                                         </ul>
-                                                    </li>
-						                                                     
+                                                    </li>                                                    
                                                     <li><a title="<?php echo MENU_Sobre;?>" href="sobre.php"><?php echo MENU_Sobre;?></a></li>                                                 
 						</ul>
 						<!-- Search Box -->
@@ -288,48 +307,116 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
 							</form>
 					</nav>
 			</header>
+			
+			
+<!-- body, or middle section of our header -->   
 
-<!-- Barra de navegação USP - Fim -->
+<!-- ###### Body Text ###### -->
 
-<div id="wrap" class="row">
+<div class="row">
+<div class="col-md-12">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Equipe de gerenciamento do Vocabulário do SIBiUSP 2013-2015</h3>
+  </div>
+  <div class="panel-body">
+    
+      <h4>Grupo de Manutenção do Vocabulário:</h4>
+      <p>-Área de Ciências Biológicas:</p>
+      <li>Elaine Cristina Domingues Martins (IP)</li>
+      <li>Fabiana Gulin Longhi Palacio (EE)</li>      
+      <li>Hálida Cristina Rocha Fernandes (FSP)</li>
+      <br/>
+      <p>-Área de Ciências Exatas e Tecnologia:</p>
+      <li>Clélia Junko Kinzu Dimário (IQSC)</li>
+      <li>Ednéia Aparecida de Almeida (IF)</li>
+      <li>Juliana de Souza Moraes (ICMC)</li>
+      <br/>
+      <p>-Área de Ciências Humanas:</p>
+      <li>Maria dos Remédios da Silva (FD)</li>
+      <li>Rafael Mielli Rodrigues (FEA)</li>
+      <li>Sarah Lorenzon Ferreira (ECA)</li>
+      <br/>
+      <p>Sonia Regina Yole Guerra (IGc) - Coordenadora de Conteúdo</p>
+      <p>Tiago Rodrigo Marçal Murakami (DT/SIBiUSP) - Coordenador de Processo</p>
+      <p>Cibele A. C. Marques dos Santos (ECA) - Assessora Acadêmica</p><br/>
+      <p>Desenvolvimento do Software e da Base de Dados:</p>
+      <li>João Carlos Holland de Barcellos (DT/SIBiUSP)</li><br/>
+      <p>Adaptação e desenvolvimento do Software Tematres:</p>
+      <li>Jan Leduc de Lara (DT/SIBiUSP)</li>
+      <li>Tiago Rodrigo Marçal Murakami (DT/SIBiUSP)</li><br/>      
+      <p>Atualização do Vocabulário e Manutenção do DEDALUS:</p>
+      <li>Roseli Koizimi Matsuda (DT/SIBiUSP)</li>
+      <li>Cristina Miyuki Narukawa (DT/SIBiUSP)</li><br/>
+      <p>Grupo de Bibliotecas: formado por bibliotecários indexadores do SIBiUSP, com representação de todas as áreas do conhecimento.</p>
+      <p>São Paulo, dezembro de 2014</p>        
 
-<?php
+  </div>
 
-	require_once(T3_ABSPATH . 'common/include/inc.inicio.php');
+  
 
-?>
+</div>    
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Equipe de gerenciamento do Vocabulário do SIBiUSP 2011-2013</h3>
+  </div>
+  <div class="panel-body">
+   
+      <h4>Grupo de Manutenção do Vocabulário:</h4>
+      <p>-Área de Ciências Biológicas:</p>
+      <li>Elaine Cristina Domingues Martins (IP)</li>
+      <li>Hálida Cristina Rocha Fernandes (FSP)</li>
+      <li>Isabel Cristina Calherani (EE)</li><br/>
+      <p>-Área de Ciências Exatas e Tecnologia:</p>
+      <li>Sonia Regina Yole Guerra (IGc)</li>
+      <li>Juliana de Souza Moraes (ICMC)</li>
+      <li>Ednéia Aparecida de Almeida (IF)</li><br/>
+      <p>-Área de Ciências Humanas:</p>
+      <li>Eliana Mara Martins Ramalho (FFLCH)</li>
+      <li>Fabiana Gulin Longhi Palacio (FD)</li>
+      <li>Sarah Lorenzon Ferreira (ECA)</li><br/>
+      <p>Silvia Regina Saran DellaTorre (EP) - Coordenadora de Conteúdo</p>
+      <p>Adriana Nascimento Flamino (DT/SIBiUSP) - Coordenadora de Processo</p>
+      <p>Cibele A. C. Marques dos Santos (FM/ECA) - Assessora Acadêmica</p>
+      <p>Desenvolvimento do Software e da Base de Dados:</p>
+      <li>João Carlos Holland de Barcellos (DT/SIBiUSP)</li><br/>
+      <p>Atualização do Vocabulário e Manutenção do DEDALUS:</p>
+      <li>Roseli Koizimi Matsuda (DT/SIBiUSP)</li>
+      <li>Adriana Nascimento Flamino (DT/SIBiUSP)</li><br/>
+      <p>Grupo de Bibliotecas: formado por bibliotecários indexadores do SIBiUSP, com representação de todas as áreas do conhecimento.</p>
+      <p>São Paulo, setembro de 2011</p>   
 
-</div><!-- /.container -->
-<div class="push"></div>
+  </div>
 
-<!-- Footer USP - Inicio -->
+  
+
+</div>
+</div>    
+    
+    
+    
+
+    <!-- ###### Footer ###### -->
+    </div>
+<!-- ###### Footer ###### -->
+
     <div class="footer">
         <div class="well well-lg">
-            <a href="http://www.vocabularyserver.com/" title="TemaTres: vocabulary server">
-            <img src="<?php echo T3_WEBPATH;?>/images/tematres-logo.gif"  width="42" alt="TemaTres"/></a>
-            <a href="http://www.vocabularyserver.com/" title="TemaTres: vocabulary server">Desenvolvido usando TemaTres 2.1</a>
-            <p>
+            <p>Desenvolvido com Tematres 1.81</p>                
+            <p><?php echo LABEL_URI ?>: <span class="footerCol2"><a href="<?php echo $_SESSION["CFGURL"];?>"><?php echo $_SESSION["CFGURL"];?></a></span></p>
 				<?php
 				//are enable SPARQL
 				if(CFG_ENABLE_SPARQL==1)
 				{
-					echo '<a class="label label-info" href="'.$_SESSION["CFGURL"].'sparql.php" title="'.LABEL_SPARQLEndpoint.'">'.LABEL_SPARQLEndpoint.'</a>';
+					echo '<p><strong><a href="'.$_SESSION["CFGURL"].'sparql.php" title="'.LABEL_SPARQLEndpoint.'">'.LABEL_SPARQLEndpoint.'</a></strong></p>';
 				}
-
+                                
 				if(CFG_SIMPLE_WEB_SERVICE==1)
 				{
-					echo '  <a class="label label-info" href="'.$_SESSION["CFGURL"].'services.php" title="API"><span class="glyphicon glyphicon-share"></span> API</a>';
+					echo '<p><a href="'.$_SESSION["CFGURL"].'services.php" title="API">API do WebService</a></p>';	
 				}
-
-					echo '  <a class="label label-info" href="'.$_SESSION["CFGURL"].'xml.php?rss=true" title="RSS"><span class="icon icon-rss"></span> RSS</a>';
-					echo '  <a class="label label-info" href="'.$_SESSION["CFGURL"].'index.php?s=n" title="'.ucfirst(LABEL_showNewsTerm).'"><span class="glyphicon glyphicon-fire"></span> '.ucfirst(LABEL_showNewsTerm).'</a>';
 				?>
-
-				<?php echo doMenuLang($metadata["arraydata"]["tema_id"]); ?>
-			</p>
-
-         		
-    <script>
+<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -338,53 +425,9 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
   ga('create', 'UA-59814582-1', 'auto');
   ga('send', 'pageview');
 
-</script>
+</script>			
+    
   </div>
         </div>
-
-
-<!-- Footer USP - Fim -->
-
-  	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="<?php echo T3_WEBPATH;?>bootstrap/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="<?php echo T3_WEBPATH;?>jq/jquery.autocomplete.js"></script>
-  <script type="text/javascript" src="<?php echo T3_WEBPATH;?>jq/jquery.mockjax.js"></script>
-  <script type="text/javascript" src="<?php echo T3_WEBPATH;?>jq/tree.jquery.js"></script>
-
-  <link rel="stylesheet" type="text/css" href="<?php echo T3_WEBPATH;?>css/jquery.autocomplete.css" />
-  <link rel="stylesheet" type="text/css" href="<?php echo T3_WEBPATH;?>css/jqtree.css" />
- <script type="text/javascript" src="<?php echo T3_WEBPATH;?>bootstrap/submenu/js/bootstrap-submenu.min.js"></script>
- <script type="text/javascript" src="<?php echo T3_WEBPATH;?>bootstrap/bootstrap-tabcollapse.js"></script>
-
-	<link type="text/css" src="<?php echo T3_WEBPATH;?>bootstrap/forms/css/styles.css"/>
-
-<?php
-if ($_SESSION[$_SESSION["CFGURL"]][ssuser_nivel]>0)
-{
-	?>
-<!-- Load TinyMCE -->
-<script type="text/javascript" src="<?php echo T3_WEBPATH;?>tiny_mce/jquery.tinymce.js"></script>
-<!-- /TinyMCE -->
-
-	<link type="text/css" href="<?php echo T3_WEBPATH;?>jq/theme/ui.all.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="<?php echo T3_WEBPATH;?>jq/jquery.jeditable.mini.js" charset="utf-8"></script>
-<?php
-}
-?>
-<script type="application/javascript" src="js.php" charset="utf-8"></script>
-<script type="text/javascript" src="<?php echo T3_WEBPATH;?>forms/jquery.validate.min.js"></script>
-<?php
- if($_SESSION[$_SESSION["CFGURL"]]["lang"][2]!=='en')
-		echo '<script src="'.T3_WEBPATH.'forms/localization/messages_'.$_SESSION[$_SESSION["CFGURL"]]["lang"][2].'.js" type="text/javascript"></script>';
-?>
-
-<script type='text/javascript'>
-
-  $("#myTermTab").tabCollapse();
-  $('.dropdown-submenu > a').submenupicker();
-
-        </script>
-    </body>
+ </body>
 </html>
