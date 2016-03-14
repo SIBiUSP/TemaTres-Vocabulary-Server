@@ -35,7 +35,7 @@ function resultaBusca($texto,$tipo=""){
 		$resumeResult = '<p class="alert alert-danger" role="alert">'.sprintf(MSG_minCharSerarch,stripslashes($texto),strlen($texto),CFG_MIN_SEARCH_SIZE-1).'</p>';
 	}
 
-	$body.='<div class="container" id="bodyText"><h2>'.LABEL_busqueda.'</h2>';
+	$body.='<div id="bodyText"><h2>'.LABEL_busqueda.'</h2>';
 
 	$body.=$resumeResult;
 
@@ -403,7 +403,8 @@ function HTMLbodyTermino($array){
 
 	$row_miga.='<ol class="breadcrumb"><li><a title="'.MENU_Inicio.'" href="index.php">'.ucfirst(MENU_Inicio).'</a></li>'.$menu_miga.'<li>'.$array["titTema"].'</li></ol>';
 
-	$body='<div class="container" id="bodyText">';
+	$body='<div id="bodyText">';
+        
 
 	//MENSAJE DE ERROR
 	$body.=$MSG_ERROR_RELACION;
@@ -415,7 +416,7 @@ function HTMLbodyTermino($array){
 	}
 	else
 	{
-		$body.=' <h1 class="estado_termino'.$array["estado_id"].'" id="T'.$array["tema_id"].'">'.$array["titTema"].'</h1>';
+		$body.=' <h1 class="estado_termino'.$array["estado_id"].'" id="T'.$array["tema_id"].'">'.$array["titTema"].' -'.HTMLshowCode($array).'</h1>';
 	}
 	//div oculto para eliminar término
 	if($_SESSION[$_SESSION["CFGURL"]]["ssuser_id"])
@@ -428,6 +429,9 @@ function HTMLbodyTermino($array){
 	$body.='<div id="breadScrumb">';
 	$body.=$row_miga;
 	$body.='</div>';
+               
+        $body.='<div class="col-md-8">';        
+        
 	# fin Div miga de pan
 	$cantNotas=count($array["notas"]);
 	$body.='<ul id="myTermTab" class="nav nav-tabs" style="margin-bottom: 15px;">
@@ -506,8 +510,38 @@ function HTMLbodyTermino($array){
 	//end tabs div
 	//$body.='</div>';
 
+        $body.='</div>'; #col-md-8
+        $body.='</div>'; #col-md-8
+        
+        $body.='<div class="col-md-4">';
+        
+        
+        if($array["isMetaTerm"]==1)
+        {
+        $body.='';
+        }
+        else
+        {
 
-
+        $body.='<div class="panel-heading">';
+        $body.='<h3 class="panel-title">Pesquisar na USP</h3>';
+        $body.='</div>';
+        $body.='<div class="panel-body">';
+        $body.='<a target="_blank" href="http://200.144.190.234/F/?func=scan&scan_code=SUB&scan_start='.$array[titTema].'">Pesquisar no Catálogo DEDALUS</a><br/>';
+        $body.='<a target="_blank" href="http://www.producao.usp.br/browse?type=subject&value='.$array[titTema].'">Pesquisar na Biblioteca Digital da Produção Intelectual</a><br/>';
+        $body.='<a target="_blank" href="http://www.teses.usp.br/index.php?option=com_jumi&fileid=19&Itemid=87&lang=pt-br&g=1&c0=p&o0=AND&b0='.$array[titTema].'">Pesquisar na Biblioteca Digital de Teses e Dissertações</a><br/>';
+        $body.='</div>';
+        $body.='<div class="panel-heading">';
+        $body.='<h3 class="panel-title">Pesquisar termo em outras bibliotecas virtuais</h3>';
+        $body.='</div>';
+        $body.='<div class="panel-body">';
+        $body.='<a target="_blank" href="http://www.bv.fapesp.br/pt/metapesquisa/?q='.$array[titTema].'">Pesquisar na Biblioteca Virtual da FAPESP</a>';
+        $body.='</div>';        
+        };        
+        
+        
+        
+        
 	$body.='</div>';#Tabs content
 	$body.='</div>';	#Fin div bodyText
 
@@ -1283,9 +1317,8 @@ function HTMLtopTerms($letra=""){
 
 	$_TOP_TERMS_BROWSER=(in_array($CFG["_TOP_TERMS_BROWSER"], array(1,0))) ? $CFG["_TOP_TERMS_BROWSER"] : 0;
 
-	$rows.='<div class="container" id="bodyText">';
-
-	$rows.=HTMLlistaAlfabeticaUnica($letra);
+	$rows.='<div id="bodyText">';
+	$rows.='<div class="col-md-8">';
 
 	$rows.='<div class="clearer-top"></div>';
 
@@ -1314,7 +1347,16 @@ function HTMLtopTerms($letra=""){
 	else{
 		$rows.='<div id="treeTerm" data-url="suggest.php?node=TT"></div>';
 	}
-	$rows.='</div>';
+$rows.='</div>';
+$rows.='<div class="col-md-4">';
+$rows.='<div class="panel panel-default">';
+$rows.='<div class="panel-heading">Navegar por ordem alfabética</div>';
+$rows.='<div class="panel-body">';
+$rows.=HTMLlistaAlfabeticaUnica($letra);
+$rows.='</div></div></div>';
+
+
+$rows.='</div>';
 
 	return $rows;
 }
@@ -1841,7 +1883,7 @@ function paginate_links( $args = '' ) {
 
 				$css_class_MT=($array["isMetaTerm"]==1) ? ' class="metaTerm" ' : '';
 
-				$link='<h3 class="TT">'.$pre_link.'<a '.$css_class_MT.' title="'.LABEL_verDetalle.$array[tema].'" href="index.php?tema='.$array[tema_id].'">'.$array[tema].'</a></h3>';
+				$link='<h4 class="TT">'.$pre_link.'<a '.$css_class_MT.' title="'.LABEL_verDetalle.$array[tema].'" href="index.php?tema='.$array[tema_id].'">'.$array[tema].'</a></h4>';
 
 				array_push($arrayResponse, array("label"=>"$link",
 				"id"=>"$array[tema_id]",
