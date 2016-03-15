@@ -509,72 +509,72 @@ define('LABEL_AgregarRTexist','associar um termo associado existente con');
 define('MENU_selectExistTerm','selecione termo existente');
 define("TT_terminos","Termos superiores");
 ## v1.72
-define('MSG__warningDeleteTerm','El término <i>%s</i> será <strong>ELIMINADO</strong>.');
-define('MSG__warningDeleteTerm2row','Se eliminarán <strong>todas</strong> sus notas y relaciones terminológicas. Esta acción es irreversible.');
+define('MSG__warningDeleteTerm','O termo <i>%s</i> será <strong>EXCLUÍDO</strong>.');
+define('MSG__warningDeleteTerm2row','Serão excluídas <strong>todas</strong> as suas notas e relações terminológicas. Esta ação é irreversível.');
 
 
 ## v1.8
 define('LABEL__getForRecomendation','get for recommendations');
 define('LABEL__getForRecomendationFor','get for recommendations to');
-define('FORM_LABEL__contactMail','contact mail');
-define('LABEL_addMapLink','add mapping between vocabularies');
+define('FORM_LABEL__contactMail','e-mail de contato');
+define('LABEL_addMapLink','adicionar mapeamento entre vocabulários');
 define('LABEL_addExactLink','add reference link');
 define('LABEL_addSourceNote','add source note');
 
 ## v1.82
-define('LABEL_FORM_mappedTermReport','Relaciones entre vocabularios');
-define('LABEL_eliminar','Eliminar');
+define('LABEL_FORM_mappedTermReport','Relações entre vocabulários');
+define('LABEL_eliminar','Excluir');
 
 
 ##v.2
-define('MSG_termsNoDeleted','términos no fueron eliminados');
-define('MSG_termsDeleted','términos eliminados');
-define('LABEL_selectAll','seleccionar todo');
+define('MSG_termsNoDeleted','termos não foram excluídos');
+define('MSG_termsDeleted','termos excluidos');
+define('LABEL_selectAll','selecionar tudo');
 define('LABEL_metadatos','metadatos');
-define('LABEL_totalTermsDescendants','términos descendentes');
-define('LABEL_altTerms','términos alternativos');
-define('LABEL_narrowerTerms','términos específicos');
+define('LABEL_totalTermsDescendants','termos descendentes');
+define('LABEL_altTerms','termos alternativos');
+define('LABEL_narrowerTerms','termos específicos');
 define('LABEL_results','resultados');
-define('LABEL_showFreeTerms','lista de términos libres');
-define('LABEL_helpSearchFreeTerms','Sólo se buscarán términos libres.');
-define('LABEL_broatherTerms','términos genéricos');
+define('LABEL_showFreeTerms','lista de termos livres');
+define('LABEL_helpSearchFreeTerms','Serão somente buscados os termos livres.');
+define('LABEL_broatherTerms','termos gerais');
 define('LABEL_type2filter','tipee para filtrar términos');
 define('LABEL_defaultEQmap','Utilice "eq" para indicar relación de equivalencia');
-define("MSG_repass_error","las claves no coinciden");
+define("MSG_repass_error","as chaves não coinciden");
 define("MSG_lengh_error","mínimo de %d caracteres");
 define("MSG_errorPostData","Ha ocurrido un error, por favor revise los datos correspondiente al campo ");
-define('LABEL_preferedTerms','términos preferidos');
-define('LABEL_FORM_NULLnotesTermReport','términos SIN notas');
-define('MSG_FORM_NULLnotesTermReport','términos que no tienen notas de tipo');
-define('LABELnoNotes','términos sin ninguna nota');
-define('LABEL_termsXdeepLevel','términos según nivel de profundidad');
-define('LABEL_deepLevel','nivel');
-define('LABEL_cantTerms','# de términos');
-define('LINK_publicKnownVocabularies','<a href="http://www.vocabularyserver.com/vocabularies/" title="Lista de vocabularios controlados conocidos" target="_blank">Lista de vocabularios controlados conocidos</a>');
-define('LABEL_showNewsTerm','ver cambios recientes');
-define('LABEL_newsTerm','cambios recientes');
-define('MSG_contactAdmin','contacte al administardor');
+define('LABEL_preferedTerms','termos preferidos');
+define('LABEL_FORM_NULLnotesTermReport','termos SEM notas');
+define('MSG_FORM_NULLnotesTermReport','termos que não tem notas de tipo');
+define('LABELnoNotes','termos sem nenhuma nota');
+define('LABEL_termsXdeepLevel','termos segundo nível de profundidade');
+define('LABEL_deepLevel','nível');
+define('LABEL_cantTerms','# de termos');
+define('LINK_publicKnownVocabularies','<a href="http://www.vocabularyserver.com/vocabularies/" title="Lista de vocabularios controlados conhecidos" target="_blank">Lista de vocabularios controlados conhecidos</a>');
+define('LABEL_showNewsTerm','ver alterações recentes');
+define('LABEL_newsTerm','alterações recentes');
+define('MSG_contactAdmin','contacte o administrador');
 define('LABEL_addTargetVocabulary','agregar vocabularios de referencia (servicios web terminológicos)');
 #v.2.1
-define('LABEL_duplicatedTerm','término duplicado');
-define('LABEL_duplicatedTerms','términos duplicados');
-define('MSG_duplicatedTerms','La configuración del vocabulario no permite términos duplicados.');
-define('LABEL_bulkReplace','cambios globales (buscar y reemplazar)');
+define('LABEL_duplicatedTerm','termo duplicado');
+define('LABEL_duplicatedTerms','termos duplicados');
+define('MSG_duplicatedTerms','La configuração do vocabulário não permite termos duplicados.');
+define('LABEL_bulkReplace','alterações globais (buscar e substituir)');
 define('LABEL_searchFor','Texto a buscar');
-define('LABEL_replaceWith','reemplazar con');
-define('LABEL_bulkNotesWillReplace','notas serán modificadas');
-define('LABEL_bulkNotesReplaced','notas fueron modificadas');
-define('LABEL_bulkTermsWillReplace','términos serán modificados');
-define('LABEL_bulkTermsReplaced','términos fueron modificados');
-define('LABEL_termMOD','términos modificado');
+define('LABEL_replaceWith','substituir por');
+define('LABEL_bulkNotesWillReplace','notas serão alteradas');
+define('LABEL_bulkNotesReplaced','notas foram alteradas');
+define('LABEL_bulkTermsWillReplace','termos serão alterados');
+define('LABEL_bulkTermsReplaced','termos foram alterados');
+define('LABEL_termMOD','termos alterados');
 define('LABEL_noteMOD','nota modificada');
-define('MENU_bulkEdition','cambios globales');
+define('MENU_bulkEdition','alterações globais');
 define('MSG_searchFor','texto que desea buscar (sensible a mayúsculas)');
 define('MSG_replaceWith','texto que reemplazará (sensible a mayúsculas)');
 define('LABEL_warningBulkEditor','Usted va a modificar masivamente datos ¡Estas acciones son IRREVERSIBLES!');
 define('LABEL_CFG_SUGGESTxWORD','¿se deben sugerir términos según palabras o frases?');
 define('LABEL_ALLOW_DUPLICATED','¿se permiten términos duplicados?');
 define('LABEL_CFG_PUBLISH','¿el vocabulario puede ser consultado por cualquiera?');
-define('LABEL_Replace','reemplazar');
-define('LABEL_Preview','vista previa');
+define('LABEL_Replace','substituir');
+define('LABEL_Preview','visualização prévia');
 ?>
