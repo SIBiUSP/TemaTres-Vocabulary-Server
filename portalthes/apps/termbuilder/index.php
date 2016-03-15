@@ -5,8 +5,7 @@
 		$params["TEMATRES_URI_SERVICE"]=$CFG_VOCABS[$CFG["DEFVOCAB"]]["URL_BASE"];
 
 //function to create drop down from values of NT
-function HTMLdoSelect($URL_BASE,$term_id)
-{
+function HTMLdoSelect($URL_BASE,$term_id) {
 
     $vocabData=getURLdata($URL_BASE.'?task=fetchVocabularyData');
 
@@ -21,7 +20,7 @@ function HTMLdoSelect($URL_BASE,$term_id)
 
 
     $rows.='<select id="tag_'.$term_id.'">';
-
+    $rows.='<option value="">Escolha um valor</option>';
     $data=getURLdata($URL_BASE.'?task=fetchDown&arg='.$term_id);
 
     if($data->resume->cant_result > 0)	{
@@ -42,7 +41,6 @@ return $rows;
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION["vocab"]["lang"]; ?>">
-
 <head>
 
         <?php
@@ -117,28 +115,76 @@ return $rows;
     }
  </script>
 
-<!-- ###### Scripts do autocompletar ###### -->
-<script type="text/javascript" src="formulario/js/jquery.autocomplete.js"></script>
-<link rel="stylesheet" type="text/css" href="formulario/css/jquery.autocomplete.css" />
-<script type="text/javascript">
+<!-- Script para copiar - USP -->
+<script type="text/javascript" src="../../common/zeroc/ZeroClipboard.js"></script>
 
-	   var options, a;
-	   var onSelect = function(val, data) { $('#construtor #id').val(data); $('#construtor').submit(); };
-	    jQuery(function(){
-	    options = {
-		    serviceUrl:'formulario/common/proxy.php' ,
-		    minChars:2,
-		    delimiter: /(,|;)\s*/, // regex or character
-		    maxHeight:400,
-		    width:600,
-		    zIndex: 9999,
-		    deferRequestBy: 0, //miliseconds
-		    noCache: false, //default is false, set to true to disable caching
-		    // callback function:
-		    //onSelect: onSelect,
-	    	};
-	    a = $('#termoresposta').autocomplete(options);
-		});
+<script type="text/javascript">
+/* ---------------------------- */
+/* BOTAO GERAR                  */
+/* ---------------------------- */
+
+
+function btngerar(){
+  with(document.getElementById('resultwrapper')){
+
+    var termo = termoresposta.value;
+
+    var qualificador = document.getElementById('tag_45185').selectedOptions[0].value;
+    if(qualificador == ""){
+      var qualificador = "";
+    } else {
+     var qualificador = "$$x"+document.getElementById('tag_45185').selectedOptions[0].text;
+    }
+
+    var genero = document.getElementById('tag_32584').selectedOptions[0].value;
+    if(genero == ""){
+      var genero = "";
+    } else {
+     var genero = "$$v"+document.getElementById('tag_32584').selectedOptions[0].text;
+    }
+
+    var profissoes = document.getElementById('tag_44101').selectedOptions[0].value;
+    if(profissoes == ""){
+      var profissoes = "";
+    } else {
+     var profissoes = document.getElementById('tag_44101').selectedOptions[0].text;
+    }
+
+    var geografico = document.getElementById('tag_32628').selectedOptions[0].value;
+    if(geografico == ""){
+      var geografico = "";
+    } else {
+     var geografico = "$$z"+document.getElementById('tag_32628').selectedOptions[0].text;
+    }
+
+    if(dataresposta.value == ""){
+      var data = "";
+    } else {
+      var data = "$$y"+dataresposta.value;
+    }
+
+    if (profissoes.value =! ""){
+            var resultstr = profissoes+"$$2larpcal";
+    }
+
+    var resultstr = termo+qualificador+genero+geografico+data+"$$2larpcal";
+
+        if(resultstr.trim().length > 0){
+      insertBefore(document.querySelectorAll('#resultado')[document.querySelectorAll('#resultado').length-1].cloneNode(true),document.querySelectorAll('#resultado')[0]);
+      with(document.querySelectorAll('#resultado')[0]){
+        style.visibility='visible';
+        style.display='table-row';
+        childNodes[1].innerText = resultstr;
+        var client = new ZeroClipboard(childNodes[3].childNodes[1]);
+        client.on( "ready", function( event ) {
+          client.on("copy", function( event ) {
+            event.clipboardData.setData('text/plain', childNodes[1].innerText);
+          });
+        });
+      }
+    }
+  }
+}
 
 
 </script>
@@ -173,10 +219,10 @@ return $rows;
        <a href="#" onclick="creaPopup('popterms/index.php?t=termoresposta&f=construtor&v=http://143.107.154.55/pt-br/services.php&loadConfig=1'); return false;">Consultar o VCUSP</a>
     </label>
     <br>
-    <input type="text" class="form-control" id="termoresposta" placeholder="Termo" data-dtermoresposta="" onblur="if(this.value!=this.dataset['dtermoresposta']) this.value='';" >
+    <input type="text" class="form-control" id="termoresposta" placeholder="Termo" data-dtermoresposta="" onblur="if(this.value!=this.dataset['dtermoresposta']) this.value='';" disabled>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" id="qualificador">
     <label class="sr-only" for="qualificador">Qualificador</label>
     <?php echo HTMLdoSelect($URL_BASE,45185);?>
     </div>
@@ -212,6 +258,7 @@ return $rows;
     </div>
     </div>
   </div>
+
   <div class="col-xs-6 col-md-4">
     <div>
         <h3><?php echo TERM_BUILDER_title;?></h3>
@@ -229,5 +276,9 @@ return $rows;
 
   </div>
         </div>
+
+
+
+
  </body>
 </html>
