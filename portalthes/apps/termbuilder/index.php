@@ -3,41 +3,6 @@
     require 'config.ws.php';
     include_once('fun.termbuilder.php');
 		$params["TEMATRES_URI_SERVICE"]=$CFG_VOCABS[$CFG["DEFVOCAB"]]["URL_BASE"];
-
-//function to create drop down from values of NT
-function HTMLdoSelect($URL_BASE,$term_id) {
-
-    $vocabData=getURLdata($URL_BASE.'?task=fetchVocabularyData');
-
-    $term_id=(int) $term_id;
-
-    $rows='<div class="input-group input-group-lg">';
-
-    $dataTerm=getURLdata($URL_BASE.'?task=fetchTerm&arg='.$term_id);
-
-    $rows.='<label style="font-weight: bold;" for="tag_'.$term_id.'" title="'.(string) $vocabData->result->title.' : '.(string) $dataTerm->result->term->string.'">';
-    $rows.='<p><a href="'.$vocabData->result->uri.'index.php?tema='.$term_id.'" title="'.(string) $vocabData->result->title.' : '.(string) $dataTerm->result->term->string.'">'.(string) $dataTerm->result->term->string.':</a>&nbsp;</p></label>';
-
-
-    $rows.='<select id="tag_'.$term_id.'">';
-    $rows.='<option value="">Escolha um valor</option>';
-    $data=getURLdata($URL_BASE.'?task=fetchDown&arg='.$term_id);
-
-    if($data->resume->cant_result > 0)	{
-            foreach ($data->result->term as $value){
-            $rows.= '<option value="'.$value->term_id.'">'.$value->string.'</option>';
-            }
-    }
-
-    $rows.='</select>';
-    $rows.='<p> </p>';
-    $rows.='</div><!-- /input-group -->	   ';
-
-return $rows;
-}
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION["vocab"]["lang"]; ?>">
@@ -125,51 +90,55 @@ return $rows;
 
 
 function btngerar(){
+  var resultstr;
+  var termo = termoresposta.value;
+  var qualificador = document.getElementById('tag_45185').selectedOptions[0].value;
+  var genero = document.getElementById('tag_32584').selectedOptions[0].value;
+  var profissoes = document.getElementById('tag_44101').selectedOptions[0].value;
+  var geografico = document.getElementById('tag_32628').selectedOptions[0].value;
+  var data;
+
   with(document.getElementById('resultwrapper')){
 
-    var termo = termoresposta.value;
-
-    var qualificador = document.getElementById('tag_45185').selectedOptions[0].value;
     if(qualificador == ""){
-      var qualificador = "";
+      qualificador = "";
     } else {
-     var qualificador = "$$x"+document.getElementById('tag_45185').selectedOptions[0].text;
+      qualificador = "$$x"+document.getElementById('tag_45185').selectedOptions[0].text;
     }
 
-    var genero = document.getElementById('tag_32584').selectedOptions[0].value;
     if(genero == ""){
-      var genero = "";
+      genero = "";
     } else {
-     var genero = "$$v"+document.getElementById('tag_32584').selectedOptions[0].text;
+      genero = "$$v"+document.getElementById('tag_32584').selectedOptions[0].text;
     }
 
-    var profissoes = document.getElementById('tag_44101').selectedOptions[0].value;
     if(profissoes == ""){
-      var profissoes = "";
+      profissoes = "";
     } else {
-     var profissoes = document.getElementById('tag_44101').selectedOptions[0].text;
+      profissoes = document.getElementById('tag_44101').selectedOptions[0].text;
     }
 
-    var geografico = document.getElementById('tag_32628').selectedOptions[0].value;
     if(geografico == ""){
-      var geografico = "";
+      geografico = "";
     } else {
-     var geografico = "$$z"+document.getElementById('tag_32628').selectedOptions[0].text;
+      geografico = "$$z"+document.getElementById('tag_32628').selectedOptions[0].text;
     }
 
     if(dataresposta.value == ""){
-      var data = "";
+      data = "";
     } else {
-      var data = "$$y"+dataresposta.value;
+      data = "$$y"+dataresposta.value;
     }
 
-    if (profissoes.value =! ""){
-            var resultstr = profissoes+"$$2larpcal";
-    }
+if (!profissoes == "") {
+  resultstr = profissoes+"$$2larpcal";
+} else if (termo == "") {
+  resultstr = "ERRO: Termo é obrigatório";
+} else {
+  resultstr = termo+qualificador+genero+geografico+data+"$$2larpcal";
+}
 
-    var resultstr = termo+qualificador+genero+geografico+data+"$$2larpcal";
-
-        if(resultstr.trim().length > 0){
+    if(resultstr.trim().length > 0){
       insertBefore(document.querySelectorAll('#resultado')[document.querySelectorAll('#resultado').length-1].cloneNode(true),document.querySelectorAll('#resultado')[0]);
       with(document.querySelectorAll('#resultado')[0]){
         style.visibility='visible';
@@ -210,7 +179,7 @@ function btngerar(){
   <div class="col-xs-12 col-md-8">
     <div class="panel panel-default">
     <div class="panel-heading">
-    <h3 class="panel-title">Construtor de termo para catalogação</h3>
+    <h3 class="panel-title">Construtor de termos para catalogação</h3>
     </div>
     <div class="panel-body">
     <div class="form-group">
