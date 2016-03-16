@@ -60,7 +60,7 @@ define('BULK_TERMS_REVIEW_description','Esta ferramenta permite comparar um conj
 termos coincidentes, termos não coincidentes, termos equivalentes (não preferidos), termos similares (variantes ortográficas).');
 
 /*TERM BUILDER PLUGIN */
-define('TERM_BUILDER_title','Construtor de termo para a catalogação');
+define('TERM_BUILDER_title','Construtor de termos para a catalogação');
 define('TERM_BUILDER_description','Esta ferramenta permite realizar combinações para construir termos qualificados.');
 
 ?>
