@@ -80,11 +80,11 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
                                 <div class="form-group">
                                     <input type="text" name="vl(freeText0)" id="mySearch" size=22  value="Busca geral..."  onfocus="this.value = ''" tabindex=1 />
                                 </div>
-                                <div class="form-group">    
+                                <div class="form-group">
                                     <input type="submit" value="Buscar" tabindex=2 >
-                                </div>            
+                                </div>
 
-                                </form>                                
+                                </form>
                                 </ul>
                                 </div>
                                 </div>
@@ -106,7 +106,7 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
                                     </ul>
                                 </div>
                                 <div class="col-md-3">
-                                    <ul class="uspmenu_top_usp">	
+                                    <ul class="uspmenu_top_usp">
                                         <div class="panel-heading">BIBLIOTECAS DIGITAIS</div>
                                         <li><a href="http://bore.usp.br" target="_blank">Obras Raras e Especiais</a></li>
                                         <li><a href="http://revistas.usp.br" target="_blank">Portal de Revistas</a></li>
@@ -120,7 +120,7 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
                                         <li><a href="http://www.mapashistoricos.usp.br" target="_blank">Cartografia Histórica</a></li>
                                         <li><a href="http://www.teses.usp.br" target="_blank">Teses/Dissertações</a></li>
 
-                                    </ul>                        
+                                    </ul>
                                 </div>
                                 <div class="col-md-3">
                                     <ul class="uspmenu_top_usp">
@@ -135,8 +135,8 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
                                         <li><a href="http://ppegeo.igc.usp.br/scielo.php" target="_blank">PaGEO (Geociências)</a></li>
                                         <li><a href="http://www.periodicos.capes.gov.br" target="_blank">Portal CAPES</a></li>
                                         <li><a href="http://www.scielo.org/php/index.php?lang=pt" target="_blank">SciELO</a></li>
-                                    </ul>                        
-                                </div>                    
+                                    </ul>
+                                </div>
                                 </div>
                                 </div>
                                 </div>
@@ -155,16 +155,16 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
                         </li>
                         <li class="uspright" style="background-color:transparent" style="position:relative; z-index:0; display:visible"></li>
                                                     </ul>
-                                                    </div> </div>              
+                                                    </div> </div>
 				</div>
 	</div>
-<!-- uspbarra - fim -->       
-     
-     
-     
+<!-- uspbarra - fim -->
+
+
+
 <div class="container">
-    
-    <!-- Header SIBiUSP -->   
+
+    <!-- Header SIBiUSP -->
     	<div class="row">
             <div class="col-md-8">
                     <div class="logo">
@@ -181,7 +181,7 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
                     </address>
             </div>
         </div>
-    <!-- Fim header --> 
+    <!-- Fim header -->
 <!-- Barra de navegação USP - Inicio -->
 
 			<header class="navbar navbar-inverse" role="navigation">
@@ -223,23 +223,23 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
                                                         <?php
                                                             if($_POST["task"]=='user_recovery')
                                                             {
-                                                                    $task_result=recovery($_POST["id_correo_electronico_recovery"]);		
+                                                                    $task_result=recovery($_POST["id_correo_electronico_recovery"]);
                                                             }
 
 
 
-                                                            if ($_GET["task"]=='recovery') 
+                                                            if ($_GET["task"]=='recovery')
                                                             {
-                                                                    echo HTMLformRecoveryPassword();	
+                                                                    echo HTMLformRecoveryPassword();
                                                             }
-                                                            else 
+                                                            else
                                                             {
 
-                                                                    if(($_POST["task"]=='login') && (!$_SESSION[$_SESSION["CFGURL"]]["ssuser_id"])) 
+                                                                    if(($_POST["task"]=='login') && (!$_SESSION[$_SESSION["CFGURL"]]["ssuser_id"]))
                                                                     {
-                                                                            $task_result=array("msg"=>t3_messages('no_user'));			
-                                                                    }					
-                                                                    echo HTMLformLogin($task_result);		
+                                                                            $task_result=array("msg"=>t3_messages('no_user'));
+                                                                    }
+                                                                    echo HTMLformLogin($task_result);
                                                             };
 
                                                             ?>
@@ -249,11 +249,11 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
                                                                ?>
                                                   </div>
                                                   <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>                                                    
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
                                                   </div>
                                                 </div>
                                               </div>
-                                            </div> 
+                                            </div>
 				<?php
 				};
 				?>
@@ -273,11 +273,11 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
                                                         <ul class="dropdown-menu" role="menu">
                                                             <li><a href="equipe.php">Equipe de implementação</a></li>
                                                             <li><a href="equipe_atual.php">Grupos de gestão atuais</a></li>
-							    <li><a title="<?php echo MENU_Catalogacao;?>" href="catalogacao.php"><?php echo MENU_Catalogacao;?></a></li> 
+							    <li><a title="<?php echo MENU_Catalogacao;?>" href="../portalthes/apps/termbuilder/index.php">Ferramenta de catalogação</a></li> 
                                                         </ul>
                                                     </li>
-						                                                     
-                                                    <li><a title="<?php echo MENU_Sobre;?>" href="sobre.php"><?php echo MENU_Sobre;?></a></li>                                                 
+
+                                                    <li><a title="<?php echo MENU_Sobre;?>" href="sobre.php"><?php echo MENU_Sobre;?></a></li>
 						</ul>
 						<!-- Search Box -->
 							<form method="get" id="simple-search" name="simple-search" action="index.php" class="navbar-form navbar-right" onsubmit="return checkrequired(this)">
@@ -328,7 +328,7 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
 				<?php echo doMenuLang($metadata["arraydata"]["tema_id"]); ?>
 			</p>
 
-         		
+
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
