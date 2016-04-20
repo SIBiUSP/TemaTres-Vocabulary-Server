@@ -633,8 +633,8 @@ function HTMLformInstall($lang_install)
 							<option value="ca">català</option>
 							<option value="en">english</option>
 							<option value="es">español</option>
-							<option value="fr">fran&ccedil;ais</option>
-							<option value="pt">portug&uuml;&eacute;s</option>				    </select>
+							<option value="fr">français</option>
+							<option value="pt">português</option>				    </select>
 				  </div>
 				</div>
 
