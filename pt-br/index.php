@@ -185,13 +185,6 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
 <!-- Barra de navegação USP - Inicio -->
 
 			<header class="navbar navbar-inverse" role="navigation">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
 					<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation" >
 						<ul class="nav navbar-nav" >
 							<li class="active"><a title="<?php echo MENU_Inicio;?>" href="index.php"><span class="glyphicon glyphicon-home"></span> <?php echo MENU_Inicio;?></a></li>
@@ -199,10 +192,10 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
 								//hay sesion de usuario
 								if($_SESSION[$_SESSION["CFGURL"]][ssuser_nivel]){
 								echo HTMLmainMenu();
-				//no hay session de usuario
-				}else{
-				?>
-					 <li>
+				            //no hay session de usuario
+				        }else{
+				      ?>
+					    <li>
                                             <!-- Button trigger modal -->
                                             <a type="button" data-toggle="modal" data-target="#login"><?php echo MENU_MiCuenta;?></a>
 					    <!-- Modal -->
@@ -273,7 +266,8 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
                                                         <ul class="dropdown-menu" role="menu">
                                                             <li><a href="equipe.php">Equipe de implementação</a></li>
                                                             <li><a href="equipe_atual.php">Grupos de gestão atuais</a></li>
-							    <li><a title="<?php echo MENU_Catalogacao;?>" href="../portalthes/apps/termbuilder/index.php">Ferramenta de catalogação</a></li> 
+                                          							    <li><a title="<?php echo MENU_Catalogacao;?>" href="../portalthes/apps/termbuilder/index.php">Ferramenta de catalogação</a></li>
+                                                            <li><a href="../portalthes/apps/autoridades">Análise de termos em lote</a></li>
                                                         </ul>
                                                     </li>
 

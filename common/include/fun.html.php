@@ -404,7 +404,7 @@ function HTMLbodyTermino($array){
 	$row_miga.='<ol class="breadcrumb"><li><a title="'.MENU_Inicio.'" href="index.php">'.ucfirst(MENU_Inicio).'</a></li>'.$menu_miga.'<li>'.$array["titTema"].'</li></ol>';
 
 	$body='<div id="bodyText">';
-        
+
 
 	//MENSAJE DE ERROR
 	$body.=$MSG_ERROR_RELACION;
@@ -429,9 +429,9 @@ function HTMLbodyTermino($array){
 	$body.='<div id="breadScrumb">';
 	$body.=$row_miga;
 	$body.='</div>';
-               
-        $body.='<div class="col-md-8">';        
-        
+
+        $body.='<div class="col-md-8">';
+
 	# fin Div miga de pan
 	$cantNotas=count($array["notas"]);
 	$body.='<ul id="myTermTab" class="nav nav-tabs" style="margin-bottom: 15px;">
@@ -512,10 +512,10 @@ function HTMLbodyTermino($array){
 
         $body.='</div>'; #col-md-8
         $body.='</div>'; #col-md-8
-        
+
         $body.='<div class="col-md-4">';
-        
-        
+
+
         if($array["isMetaTerm"]==1)
         {
         $body.='';
@@ -536,12 +536,12 @@ function HTMLbodyTermino($array){
         $body.='</div>';
         $body.='<div class="panel-body">';
         $body.='<a target="_blank" href="http://www.bv.fapesp.br/pt/metapesquisa/?q='.$array[titTema].'">Pesquisar na Biblioteca Virtual da FAPESP</a>';
-        $body.='</div>';        
-        };        
-        
-        
-        
-        
+        $body.='</div>';
+        };
+
+
+
+
 	$body.='</div>';#Tabs content
 	$body.='</div>';	#Fin div bodyText
 
@@ -552,7 +552,6 @@ function HTMLbodyTermino($array){
 
 function HTMLmainMenu(){
 
-	$row.='<ul class="nav navbar-nav navbar-right">';
 	$row.='<li class="dropdown">
 	<a href="#" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">'.ucfirst(LABEL_Menu).' <b class="caret"></b></a>';
 
@@ -563,7 +562,7 @@ function HTMLmainMenu(){
 	if($_SESSION[$_SESSION["CFGURL"]][ssuser_nivel]=='1'){
 		$row.='<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">'.LABEL_Admin.'</a>';
 		$row.='<ul class="dropdown-menu">';
-		$row.='<li><a title="'.ucfirst(LABEL_lcConfig).'" href="admin.php?vocabulario_id=list">'.ucfirst(LABEL_lcConfig).'</a></li>';		
+		$row.='<li><a title="'.ucfirst(LABEL_lcConfig).'" href="admin.php?vocabulario_id=list">'.ucfirst(LABEL_lcConfig).'</a></li>';
 		$row.='<li><a title="'.ucfirst(MENU_bulkEdition).'" href="admin.php?doAdmin=bulkReplace">'.ucfirst(MENU_bulkEdition).'</a></li>';
 		$row.='<li><a title="'.ucfirst(MENU_Usuarios).'" href="admin.php?user_id=list">'.ucfirst(MENU_Usuarios).'</a></li>';
 		$row.='<li><a title="'.ucfirst(LABEL_export).'" href="admin.php?doAdmin=export">'.ucfirst(LABEL_export).'</a></li>';
@@ -612,7 +611,7 @@ function HTMLmainMenu(){
 
 	$row.='<li><a role="button" title="'.ucfirst(MENU_AgregarT).'" href="index.php?taskterm=addTerm&amp;tema=0">'.ucfirst(MENU_AgregarT).'</a></li>';
 
-	
+
 	$row.='</ul>';
 
 
@@ -1078,7 +1077,7 @@ function HTML_URLsearch($display=Array(),$arrayTema=Array()) {
 # Expande una busqueda hacia arriba == busca los términos más generales de los términos especificos devueltos en una busqueda
 #
 function HTMLbusquedaExpandidaTG($acumula_indice,$acumula_temas,$string){
-	
+
 	global $DBCFG;
 
 	$array_indice = explode("|", $acumula_indice);
@@ -1907,7 +1906,7 @@ function paginate_links( $args = '' ) {
 
 
 				$ARRAYuserData4term=ARRAYuserData4term($arrayTerm["tema_id"]);
-				
+
 				$termCreator=' ('.$ARRAYuserData4term["c_nombres"].' '.$ARRAYuserData4term["c_apellido"].')';
 				$termMod=' ('.$ARRAYuserData4term["m_nombres"].' '.$ARRAYuserData4term["m_apellido"].')';
 
@@ -2020,9 +2019,9 @@ function HTMLduplicatedTermsAlert($arrayDuplicatedTerms){
 			foreach ($arrayDuplicatedTerms as $term_id => $term) {
 				$rows.= '<li><a href="index.php?tema='.$term_id.'" title="'.LABEL_Detalle.'">'.$term.'</a></li>';
 			}
-			$rows.='</ul>';			
-	$rows.= '<p>'.MSG_duplicatedTerms.'</p>';			
-	$rows.='</div>';	
+			$rows.='</ul>';
+	$rows.= '<p>'.MSG_duplicatedTerms.'</p>';
+	$rows.='</div>';
 
 	return array("type_error"=>'duplicatedTerms',
 				 "html"=>$rows)	;
