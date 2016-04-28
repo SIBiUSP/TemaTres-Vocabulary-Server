@@ -29,13 +29,13 @@ $metadata=do_meta_tag();
   <?php echo $metadata["metadata"]; ?>
   <link type="image/x-icon" href="<?php echo T3_WEBPATH;?>images/tematres.ico" rel="icon" />
   <link type="image/x-icon" href="<?php echo T3_WEBPATH;?>images/tematres.ico" rel="shortcut icon" />
-  
+
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo T3_WEBPATH;?>bootstrap/css/vcusp-theme.css">  
-  
+    <link rel="stylesheet" href="<?php echo T3_WEBPATH;?>bootstrap/css/vcusp-theme.css">
+
 </head>
  <body>
-     
+
 <!--uspbarra - ínicio -->
 	<div id="uspbarra" style="background-color:transparent;border-style:none">
 		<div class="uspLogo"  style="background-color:transparent;border-style:none">
@@ -73,11 +73,11 @@ $metadata=do_meta_tag();
                                 <div class="form-group">
                                     <input type="text" name="vl(freeText0)" id="mySearch" size=22  value="Busca geral..."  onfocus="this.value = ''" tabindex=1 />
                                 </div>
-                                <div class="form-group">    
+                                <div class="form-group">
                                     <input type="submit" value="Buscar" tabindex=2 >
-                                </div>            
+                                </div>
 
-                                </form>                                
+                                </form>
                                 </ul>
                                 </div>
                                 </div>
@@ -99,7 +99,7 @@ $metadata=do_meta_tag();
                                     </ul>
                                 </div>
                                 <div class="col-md-3">
-                                    <ul class="uspmenu_top_usp">	
+                                    <ul class="uspmenu_top_usp">
                                         <div class="panel-heading">BIBLIOTECAS DIGITAIS</div>
                                         <li><a href="http://bore.usp.br" target="_blank">Obras Raras e Especiais</a></li>
                                         <li><a href="http://revistas.usp.br" target="_blank">Portal de Revistas</a></li>
@@ -113,7 +113,7 @@ $metadata=do_meta_tag();
                                         <li><a href="http://www.mapashistoricos.usp.br" target="_blank">Cartografia Histórica</a></li>
                                         <li><a href="http://www.teses.usp.br" target="_blank">Teses/Dissertações</a></li>
 
-                                    </ul>                        
+                                    </ul>
                                 </div>
                                 <div class="col-md-3">
                                     <ul class="uspmenu_top_usp">
@@ -128,8 +128,8 @@ $metadata=do_meta_tag();
                                         <li><a href="http://ppegeo.igc.usp.br/scielo.php" target="_blank">PaGEO (Geociências)</a></li>
                                         <li><a href="http://www.periodicos.capes.gov.br" target="_blank">Portal CAPES</a></li>
                                         <li><a href="http://www.scielo.org/php/index.php?lang=pt" target="_blank">SciELO</a></li>
-                                    </ul>                        
-                                </div>                    
+                                    </ul>
+                                </div>
                                 </div>
                                 </div>
                                 </div>
@@ -148,15 +148,15 @@ $metadata=do_meta_tag();
                         </li>
                         <li class="uspright" style="background-color:transparent" style="position:relative; z-index:0; display:visible"></li>
                                                     </ul>
-                                                    </div> </div>              
+                                                    </div> </div>
 				</div>
 	</div>
-<!-- uspbarra - fim -->            
-     
-     
+<!-- uspbarra - fim -->
+
+
    <div class="container">
-   
-    <!-- Header SIBiUSP -->   
+
+    <!-- Header SIBiUSP -->
     	<div class="row">
             <div class="col-md-8">
                     <div class="logo">
@@ -174,7 +174,7 @@ $metadata=do_meta_tag();
             </div>
         </div>
     <!-- Fim header -->
-  
+
     <!-- Barra de navegação USP - Inicio -->
 
 			<header class="navbar navbar-inverse" role="navigation">
@@ -216,22 +216,22 @@ $metadata=do_meta_tag();
                                                         <?php
                                                             if($_POST["task"]=='user_recovery')
                                                             {
-                                                                    $task_result=recovery($_POST["id_correo_electronico_recovery"]);		
+                                                                    $task_result=recovery($_POST["id_correo_electronico_recovery"]);
                                                             }
 
 
-                                                            if ($_GET["task"]=='recovery') 
+                                                            if ($_GET["task"]=='recovery')
                                                             {
-                                                                    echo HTMLformRecoveryPassword();	
+                                                                    echo HTMLformRecoveryPassword();
                                                             }
-                                                            else 
+                                                            else
                                                             {
 
-                                                                    if(($_POST["task"]=='login') && (!$_SESSION[$_SESSION["CFGURL"]]["ssuser_id"])) 
+                                                                    if(($_POST["task"]=='login') && (!$_SESSION[$_SESSION["CFGURL"]]["ssuser_id"]))
                                                                     {
-                                                                            $task_result=array("msg"=>t3_messages('no_user'));			
-                                                                    }					
-                                                                    echo HTMLformLogin($task_result);		
+                                                                            $task_result=array("msg"=>t3_messages('no_user'));
+                                                                    }
+                                                                    echo HTMLformLogin($task_result);
                                                             };
 
                                                             ?>
@@ -241,11 +241,11 @@ $metadata=do_meta_tag();
                                                                ?>
                                                   </div>
                                                   <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>                                                    
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
                                                   </div>
                                                 </div>
                                               </div>
-                                            </div> 
+                                            </div>
 				<?php
 				};
 				?>
@@ -265,11 +265,12 @@ $metadata=do_meta_tag();
                                                         <ul class="dropdown-menu" role="menu">
                                                             <li><a href="equipe.php">Equipe de implementação</a></li>
                                                             <li><a href="equipe_atual.php">Grupos de gestão atuais</a></li>
-							    <li><a title="<?php echo MENU_Catalogacao;?>" href="catalogacao.php"><?php echo MENU_Catalogacao;?></a></li> 
+                                          							    <li><a title="<?php echo MENU_Catalogacao;?>" href="../portalthes/apps/termbuilder/index.php">Ferramenta de catalogação</a></li>
+                                                            <li><a href="../portalthes/apps/autoridades">Análise de termos em lote</a></li>
                                                         </ul>
                                                     </li>
-						                                                     
-                                                    <li><a title="<?php echo MENU_Sobre;?>" href="sobre.php"><?php echo MENU_Sobre;?></a></li>                                                 
+
+                                                    <li><a title="<?php echo MENU_Sobre;?>" href="sobre.php"><?php echo MENU_Sobre;?></a></li>
 						</ul>
 						<!-- Search Box -->
 							<form method="get" id="simple-search" name="simple-search" action="index.php" class="navbar-form navbar-right" onsubmit="return checkrequired(this)">
@@ -283,9 +284,9 @@ $metadata=do_meta_tag();
 
 <!-- Barra de navegação USP - Fim -->
 
-    
-    
-    
+
+
+
 <!-- Histórico USP - Início -->
 
 <div class="row">
@@ -353,7 +354,7 @@ $metadata=do_meta_tag();
               <ul>
                   <li>Faculdade de Direito</li>
                   <li>Faculdade de Economia e Administração</li>
-              </ul>              
+              </ul>
           </td>
         </tr>
         <tr>
@@ -387,8 +388,8 @@ $metadata=do_meta_tag();
                   <li>Instituto de Física de São Carlos</li>
                   <li>Instituto de Geociências</li>
                   <li>Instituto de Matemática e Estatística</li>
-                  <li>Instituto de Química e Faculdade de Ciências Farmacêuticas (Conjunto das Químicas)</li>       
-                  <li>Instituto de Química de São Carlos</li>                     
+                  <li>Instituto de Química e Faculdade de Ciências Farmacêuticas (Conjunto das Químicas)</li>
+                  <li>Instituto de Química de São Carlos</li>
               </ul>
           </td>
         </tr>
@@ -401,7 +402,7 @@ $metadata=do_meta_tag();
                   <li>Escola de Enfermagem</li>
                   <li>Faculdade de Medicina</li>
                   <li>Faculdade de Saúde Pública</li>
-                  <li>Unidades do Campus de Ribeirão Preto (Biblioteca Central)</li>           
+                  <li>Unidades do Campus de Ribeirão Preto (Biblioteca Central)</li>
               </ul>
           </td>
         </tr>
@@ -415,7 +416,7 @@ $metadata=do_meta_tag();
                   <li>Instituto de Biociências</li>
                   <li>Instituto de Ciências Biomédicas</li>
                   <li>Instituto Oceanográfico</li>
-                  <li>Museu de Zoologia</li>         
+                  <li>Museu de Zoologia</li>
               </ul>
           </td>
         </tr>
@@ -438,10 +439,10 @@ $metadata=do_meta_tag();
                   <li>Faculdade de Odontologia de Bauru</li>
               </ul>
           </td>
-        </tr>        
+        </tr>
       </tbody>
   </table>
- </div>   
+ </div>
 <h4>Inclusão dos blocos de assuntos, gerados em ordem hierárquica, na estrutura temática unificada</h4>
 <p>Foi elaborado pela equipe do DT/SIBi um programa de computador (com o respectivo manual de procedimentos) para o desenvolvimento das atividades de compatibilização. Este programa permitiu registrar a coleta dos assuntos usados em cada biblioteca e sua correspondência com a Lista de Assuntos USP então vigente. Após a compatibilização das estruturas temáticas por sub-grupo, os dados foram integrados à estrutura temática unificada, a fim de serem estabelecidas as relações lógico-semânticas entre os termos.</p>
 <p>A partir desse processo de inclusão, foi gerada uma listagem em ordem alfabética com a finalidade de consolidar os termos (descritores) a serem efetivamente utilizados. Cada termo foi identificado por uma sigla indicadora da Unidade USP quanto à sua proveniência.</p>
@@ -479,8 +480,8 @@ $metadata=do_meta_tag();
                   <li>CB210 BIOLOGIA</li>
                   <li>CB220 BOTÂNICA</li>
                   <li>CB230 IMUNOLOGIA</li>
-                  <li>CB240 MICROBIOLOGIA</li>  
-                  <li>CB250 ZOOLOGIA</li>              
+                  <li>CB240 MICROBIOLOGIA</li>
+                  <li>CB250 ZOOLOGIA</li>
               </ul>
           </td>
         </tr>
@@ -491,12 +492,12 @@ $metadata=do_meta_tag();
                   <li>CB310 EDUCAÇÃO FÍSICA E ESPORTE</li>
                   <li>CB320 ENFERMAGEM</li>
                   <li>CB330 MEDICINA</li>
-                  <li>CB340 NUTRIÇÃO</li>  
+                  <li>CB340 NUTRIÇÃO</li>
                   <li>CB350 ODONTOLOGIA</li>
                   <li>CB360 PSICOLOGIA</li>
                   <li>CB370 SAÚDE PÚBLICA</li>
-                  <li>CB380 FARMÁCIA E COSMETOLOGIA</li>  
-                  <li>CB390 FONOAUDIOLOGIA</li>                     
+                  <li>CB380 FARMÁCIA E COSMETOLOGIA</li>
+                  <li>CB390 FONOAUDIOLOGIA</li>
               </ul>
           </td>
         </tr>
@@ -516,9 +517,9 @@ $metadata=do_meta_tag();
                   <li>CE510 ASTRONOMIA</li>
                   <li>CE520 FÍSICA</li>
                   <li>CE530 GEOCIÊNCIAS</li>
-                  <li>CE540 GEOFÍSICA</li>  
+                  <li>CE540 GEOFÍSICA</li>
                   <li>CE550 MATEMÁTICA</li>
-                  <li>CE560 QUÍMICA</li>                
+                  <li>CE560 QUÍMICA</li>
               </ul>
           </td>
         </tr>
@@ -529,7 +530,7 @@ $metadata=do_meta_tag();
                   <li>CE610 CIÊNCIA DA COMPUTAÇÃO</li>
                   <li>CE620 ENGENHARIA</li>
                   <li>CE630 ESTATÍSTICA E PROBABILIDADE</li>
-                  <li>CE640 METEOROLOGIA</li>               
+                  <li>CE640 METEOROLOGIA</li>
               </ul>
           </td>
         </tr>
@@ -540,18 +541,18 @@ $metadata=do_meta_tag();
                   <li>CH710 ADMINISTRAÇÃO, ECONOMIA, ECONOMIA DOMÉSTICA E CONTABILIDADE</li>
                   <li>CH720 ARQUEOLOGIA, MITOLOGIA E PRÉ-HISTÓRIA</li>
                   <li>CH730 ARQUITETURA, PLANEJAMENTO TERRITORIAL URBANO E HABITAÇÃO</li>
-                  <li>CH740 ARTES E COMUNICAÇÕES</li>  
+                  <li>CH740 ARTES E COMUNICAÇÕES</li>
                   <li>CH750 CIÊNCIA DA INFORMAÇÃO E MUSEOLOGIA</li>
                   <li>CH760 DIREITO, FILOSOFIA, RELIGIÃO, CIÊNCIAS SOCIAIS E CIÊNCIA MILITAR</li>
                   <li>CH770 EDUCAÇÃO, LAZER E RECREAÇÃO</li>
-                  <li>CH780 HISTÓRIA, HISTÓRIA DO BRASIL E GEOGRAFIA</li>  
-                  <li>CH790 LINGUAGEM, LÍNGUAS, LINGUÍSTICA, TEORIA LITERÁRIA E LITERATURA</li>                     
+                  <li>CH780 HISTÓRIA, HISTÓRIA DO BRASIL E GEOGRAFIA</li>
+                  <li>CH790 LINGUAGEM, LÍNGUAS, LINGUÍSTICA, TEORIA LITERÁRIA E LITERATURA</li>
               </ul>
           </td>
-        </tr>          
+        </tr>
       </tbody>
   </table>
- </div>   
+ </div>
 </div>
 </div>
 
