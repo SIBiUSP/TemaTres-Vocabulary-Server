@@ -233,7 +233,7 @@ function USPbarra(){
     	<div class="row">
             <div class="col-md-8">
                     <div class="logousp">
-                            <h1><a href="index.php" title="Vocabulário Controlado do SIBiUSP">Vocabulário Controlado do SIBiUSP</a></h1>
+                            <h1><a href="http://vocab.sibi.usp.br/pt-br/index.php" title="Vocabulário Controlado do SIBiUSP">Vocabulário Controlado do SIBiUSP</a></h1>
                     </div>
             </div>
             <div class="col-md-4">
@@ -241,7 +241,7 @@ function USPbarra(){
                     <strong>Departamento Técnico do Sistema Integrado de Bibliotecas da USP</strong><br>
                             Rua da Biblioteca, S/N - Complexo Brasiliana<br>
                             05508-050 - Cidade Universitária, São Paulo, SP - Brasil<br>
-                            <abbr title="Phone">Tel:</abbr> (0xx11) 3091-4439<br>
+                            <abbr title="Phone">Tel:</abbr> (0xx11) 2648-0948<br>
                             <strong>E-mail:</strong> <a href="mailto:#">atendimento@sibi.usp.br</a>
                     </address>
             </div>

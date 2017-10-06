@@ -168,7 +168,7 @@ $search_string = (doValue($_GET,FORM_LABEL_buscar)) ? XSSprevent(doValue($_GET,F
     	<div class="row">
             <div class="col-md-8">
                     <div class="logo">
-                            <h1><a href="index.php" title="<?php echo $_SESSION[CFGTitulo].': '.MENU_ListaSis;?> "><?php echo $_SESSION[CFGTitulo];?></a></h1>
+                            <h1><a href="http://vocab.sibi.usp.br/pt-br/index.php" title="<?php echo $_SESSION[CFGTitulo].': '.MENU_ListaSis;?> "><?php echo $_SESSION[CFGTitulo];?></a></h1>
                     </div>
             </div>
             <div class="col-md-4">
